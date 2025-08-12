@@ -1,5 +1,5 @@
 const questionarioModel = require("../models/questionarioModel");
-
+const { nanoid } = require("nanoid")
 class QuestionarioController {
   buscar(req, res) {
     questionarioModel
@@ -10,8 +10,9 @@ class QuestionarioController {
 
   criar(req, res) {
     const { respostas } = req.body;
+    const envioId = nanoid(8); //nanoid é uma lib para gerar id's únicos
     const respostasFormatadas = respostas.map((resposta) => {
-      return [resposta[0], resposta[1], resposta[2]];
+      return [envioId, resposta[0], resposta[1]];
     });
 
     questionarioModel
