@@ -1,5 +1,6 @@
 import image from "@/assets/images/pc-image.png";
 import Botao from "@/components/Botao";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -11,7 +12,9 @@ const Home = () => {
       <div className="content">
         <h1>Chegou a Pesquisa de Engajamento!</h1>
         <p>Texto complementar chamando o colaborador para responder.</p>
-        <Botao>Responder</Botao>
+        <Link to={"/questions"}>
+          <Botao>Responder</Botao>
+        </Link>
       </div>
     </div>
   );
