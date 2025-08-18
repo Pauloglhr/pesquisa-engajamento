@@ -2,11 +2,17 @@ import styled from "styled-components";
 
 const StyledButton = styled.button`
   text-transform: uppercase;
-  background-color: ${(props) => (props.$btnAmarelo ? "yellow" : "green")};
+  font-weight: bolder;
+  color: white;
+  background-color: ${(props) => (props.$btnAmarelo ? "#F9B44F" : "#4D9D4F")};
+  border: none;
+  padding: 20px;
+  width: 150px;
+  border-radius: 10px;
+  cursor: pointer;
 `;
 
 const Botao = ({ children, btnAmarelo = false }) => {
-  
   //função que vai conter a lógica de avançar e voltar as perguntas
   const funcaoAuxiliar = (btnAmarelo) => {
     if (btnAmarelo) {
