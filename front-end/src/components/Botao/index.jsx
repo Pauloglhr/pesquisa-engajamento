@@ -21,7 +21,6 @@ const Botao = ({ children, btnAmarelo = false }) => {
     }
     return console.log("avançar pergunta");
   };
-  //
 
   return (
     <StyledButton

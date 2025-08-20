@@ -19,7 +19,7 @@ const StyledQuestionsContainer = styled.div`
     padding: 20px;
     box-shadow: 4px 8px 14px 0px #00000024;
 
-    span {
+    .label {
       position: absolute;
       top: 0;
       left: 0;
@@ -31,7 +31,7 @@ const StyledQuestionsContainer = styled.div`
       border-radius: 0 0 10px 0;
     }
 
-    img {
+    .main-image {
       max-width: 50vw;
       max-height: 250px;
       @media (max-width: 768px) {
@@ -59,6 +59,7 @@ const Questions = () => {
       <div className="box">
         <span className="label">Cultura e pessoas</span>
         <img
+          className="main-image"
           src={lupaImage}
           alt="Ícone de uma lupa escrito pesquisa de engajamento ao redor"
         />
