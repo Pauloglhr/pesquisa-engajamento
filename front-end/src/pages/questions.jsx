@@ -63,7 +63,8 @@ const Questions = () => {
           src={lupaImage}
           alt="Ícone de uma lupa escrito pesquisa de engajamento ao redor"
         />
-        <div>Perguntas</div>
+        <div>perguntas</div>
+        {/* context api para registrar as respostas */}
         <Opcoes />
         <div className="botoes">
           <Botao btnAmarelo>Voltar</Botao>

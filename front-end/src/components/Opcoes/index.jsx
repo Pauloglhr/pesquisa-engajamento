@@ -28,7 +28,7 @@ const StyledOptionsContainer = styled.div`
     align-items: center;
     gap: 0.75rem;
     text-align: center;
-    transition: all 0.2s ease-in-out; 
+    transition: all 0.2s ease-in-out;
 
     img {
       max-width: 100%;
@@ -41,15 +41,15 @@ const StyledOptionsContainer = styled.div`
     }
 
     &:hover {
-      border: 2px solid #a2a2a2; 
-      transform: translateY(-3px); 
+      border: 2px solid #a2a2a2;
+      transform: translateY(-3px);
     }
   }
 
   input[type="radio"]:checked + label {
     background-color: #dfe4de;
-    border: 2px solid #28a745; 
-    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5); 
+    border: 2px solid #28a745;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
     transform: translateY(-3px);
   }
 
