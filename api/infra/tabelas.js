@@ -9,7 +9,7 @@ class Tabelas {
             CREATE TABLE IF NOT EXISTS respostas_engajamento
             (
                 id_resposta INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                envio_id INT NOT NULL,
+                envio_id VARCHAR(250) NOT NULL,
                 id_pergunta INT NOT NULL,
                 resposta ENUM("SIM", "PARCIAL", "NAO") NOT NULL,
 
