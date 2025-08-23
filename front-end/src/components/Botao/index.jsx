@@ -1,3 +1,6 @@
+import { useApiContext } from "@/hooks/useApiContext";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
@@ -10,24 +13,51 @@ const StyledButton = styled.button`
   width: 150px;
   border-radius: 10px;
   cursor: pointer;
+  transition: ease-in-out 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 const Botao = ({ children, btnAmarelo = false }) => {
-  //função que vai conter a lógica de avançar e voltar as perguntas
-  const funcaoAuxiliar = (btnAmarelo) => {
-    if (btnAmarelo) {
-      console.log("voltar pergunta");
-      return;
+  const { questionIndex, setQuestionIndex, totalQuestions } = useApiContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(questionIndex);
+  }, [questionIndex]);
+
+  const isLastQuestion = questionIndex === totalQuestions - 1;
+
+  const handleVoltar = () => {
+    if (questionIndex === 0) {
+      navigate(-1);
+    } else {
+      setQuestionIndex(questionIndex - 1);
     }
-    return console.log("avançar pergunta");
   };
+
+  const handleAvancar = () => {
+    if (isLastQuestion) {
+      navigate("/result");
+    } else {
+      setQuestionIndex(questionIndex + 1);
+    }
+  };
+
+  const buttonText = btnAmarelo
+    ? children
+    : isLastQuestion
+    ? "Finalizar"
+    : children;
 
   return (
     <StyledButton
       $btnAmarelo={btnAmarelo}
-      onClick={() => funcaoAuxiliar(btnAmarelo)}
+      onClick={btnAmarelo ? handleVoltar : handleAvancar}
     >
-      {children}
+      {buttonText}
     </StyledButton>
   );
 };

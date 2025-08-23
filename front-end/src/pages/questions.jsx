@@ -1,6 +1,8 @@
 import lupaImage from "@/assets/images/lupa-image.png";
 import Botao from "@/components/Botao";
 import Opcoes from "@/components/Opcoes";
+import { useApiContext } from "@/hooks/useApiContext";
+import { useEffect } from "react";
 import styled from "styled-components";
 
 const StyledQuestionsContainer = styled.div`
@@ -54,6 +56,16 @@ const StyledQuestionsContainer = styled.div`
 `;
 
 const Questions = () => {
+  const { setQuestionIndex, currentQuestion, loading } = useApiContext();
+
+  useEffect(() => {
+    setQuestionIndex(0);
+  }, [setQuestionIndex]);
+
+  if (loading) {
+    return <p>Carregando perguntas...</p>;
+  }
+
   return (
     <StyledQuestionsContainer>
       <div className="box">
@@ -63,8 +75,9 @@ const Questions = () => {
           src={lupaImage}
           alt="Ícone de uma lupa escrito pesquisa de engajamento ao redor"
         />
-        <div>perguntas</div>
-        {/* context api para registrar as respostas */}
+        <div>
+          <p>{currentQuestion.texto_pergunta}</p>
+        </div>
         <Opcoes />
         <div className="botoes">
           <Botao btnAmarelo>Voltar</Botao>
