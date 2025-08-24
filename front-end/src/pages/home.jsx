@@ -1,5 +1,7 @@
 import image from "@/assets/images/pc-image.png";
 import Botao from "@/components/Botao";
+import { useApiContext } from "@/hooks/useApiContext";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -37,6 +39,12 @@ const StyledHomeContainer = styled.div`
 `;
 
 const Home = () => {
+  const { isNextButtonDisabled } = useApiContext();
+
+  useEffect(() => {
+    isNextButtonDisabled;
+  }, []);
+
   return (
     <StyledHomeContainer>
       <img
@@ -47,7 +55,7 @@ const Home = () => {
         <h1>Chegou a Pesquisa de Engajamento!</h1>
         <p>Texto complementar chamando o colaborador para responder.</p>
         <Link to={"/questions"}>
-          <Botao>Responder</Botao>
+          <Botao btnResponder={true}>Responder</Botao>
         </Link>
       </div>
     </StyledHomeContainer>

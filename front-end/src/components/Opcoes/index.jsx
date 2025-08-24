@@ -2,6 +2,7 @@ import styled from "styled-components";
 import iconSim from "@/assets/images/icon-sim.png";
 import iconParcial from "@/assets/images/icon-parcial.png";
 import iconNao from "@/assets/images/icon-nao.png";
+import { useApiContext } from "@/hooks/useApiContext";
 
 const StyledOptionsContainer = styled.div`
   input[type="radio"] {
@@ -58,33 +59,61 @@ const StyledOptionsContainer = styled.div`
   }
 `;
 
+const opcoes = [
+  {
+    opcao: "sim",
+    opcaoText: "Sim",
+    imagem: iconSim,
+    alt: "Emoji de uma cara feliz de cor verde com corações nos olhos",
+  },
+  {
+    opcao: "parcial",
+    opcaoText: "Parcial",
+    imagem: iconParcial,
+    alt: "Emoji de uma cara neutra na cor amarela",
+  },
+  {
+    opcao: "nao",
+    opcaoText: "Não",
+    imagem: iconNao,
+    alt: "Emoji de uma cara zangada na cor vermelha",
+  },
+];
+
 const Opcoes = () => {
+  const { answers, setAnswers, questionIndex } = useApiContext();
+
+  const handleOptionChange = (event) => {
+    const newAnswers = {
+      ...answers,
+      [questionIndex]: event.target.value,
+    };
+    setAnswers(newAnswers);
+  };
+
   return (
     <form>
       <StyledOptionsContainer>
-        <input type="radio" id="opcao1" name="opcoes" value="sim" />
-        <label htmlFor="opcao1">
-          <span>Sim</span>
-          <img
-            src={iconSim}
-            alt="Emoji de uma cara feliz de cor verde com corações nos olhos"
-          />
-        </label>
-
-        <input type="radio" id="opcao2" name="opcoes" value="parcial" />
-        <label htmlFor="opcao2">
-          <span>Parcial</span>
-          <img
-            src={iconParcial}
-            alt="Emoji de uma cara neutra na cor amarela"
-          />
-        </label>
-
-        <input type="radio" id="opcao3" name="opcoes" value="nao" />
-        <label htmlFor="opcao3">
-          <span>Não</span>
-          <img src={iconNao} alt="Emoji de uma cara zangada na cor vermelha" />
-        </label>
+        {opcoes.map((opcao, index) => {
+          const id = `opcao-${index}`;
+          return (
+            <div key={index}>
+              <input
+                className="input-option"
+                type="radio"
+                name="options"
+                value={opcao.opcao}
+                id={id}
+                onChange={handleOptionChange}
+                checked={answers[questionIndex] === opcao.opcao}
+              />
+              <label htmlFor={id}>
+                <span>{opcao.opcaoText}</span>
+                <img src={opcao.imagem} alt={opcao.alt} />
+              </label>
+            </div>
+          );
+        })}
       </StyledOptionsContainer>
     </form>
   );

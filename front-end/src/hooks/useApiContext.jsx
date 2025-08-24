@@ -10,8 +10,11 @@ export const useApiContext = () => {
     setLoading,
     questionIndex,
     setQuestionIndex,
+    answers,
+    setAnswers,
   } = useContext(ApiContext);
 
+  //requisição para obter as perguntas
   useEffect(() => {
     axios
       .get("http://localhost:3000/questionario")
@@ -24,8 +27,12 @@ export const useApiContext = () => {
       });
   }, []);
 
+  //verifica se a pergunta atual não tem resposta.
+  const isNextButtonDisabled = answers[questionIndex] === undefined;
+
   const totalQuestions = questions.length;
 
+  //retorna a pergunta de acordo com o contador de indice de pergunta.
   const currentQuestion = questions[questionIndex];
 
   return {
@@ -34,5 +41,8 @@ export const useApiContext = () => {
     loading,
     questionIndex,
     setQuestionIndex,
+    isNextButtonDisabled,
+    answers,
+    setAnswers,
   };
 };

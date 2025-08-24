@@ -18,10 +18,20 @@ const StyledButton = styled.button`
   &:hover {
     opacity: 0.8;
   }
+
+  &:disabled {
+    cursor: no-drop;
+    opacity: 0.6;
+  }
 `;
 
-const Botao = ({ children, btnAmarelo = false }) => {
-  const { questionIndex, setQuestionIndex, totalQuestions } = useApiContext();
+const Botao = ({ children, btnAmarelo = false, btnResponder = false }) => {
+  const {
+    questionIndex,
+    setQuestionIndex,
+    totalQuestions,
+    isNextButtonDisabled,
+  } = useApiContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,6 +65,7 @@ const Botao = ({ children, btnAmarelo = false }) => {
   return (
     <StyledButton
       $btnAmarelo={btnAmarelo}
+      disabled={!btnAmarelo && !btnResponder && isNextButtonDisabled}
       onClick={btnAmarelo ? handleVoltar : handleAvancar}
     >
       {buttonText}

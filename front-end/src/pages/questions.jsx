@@ -41,6 +41,12 @@ const StyledQuestionsContainer = styled.div`
       }
     }
 
+    .questions-text {
+      text-align: center;
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-weight: 600;
+    }
+
     .botoes {
       width: 100%;
       display: flex;
@@ -58,6 +64,7 @@ const StyledQuestionsContainer = styled.div`
 const Questions = () => {
   const { setQuestionIndex, currentQuestion, loading } = useApiContext();
 
+  //zera a contagem quando a imagem
   useEffect(() => {
     setQuestionIndex(0);
   }, [setQuestionIndex]);
@@ -76,12 +83,12 @@ const Questions = () => {
           alt="Ícone de uma lupa escrito pesquisa de engajamento ao redor"
         />
         <div>
-          <p>{currentQuestion.texto_pergunta}</p>
+          <p className="questions-text">{currentQuestion.texto_pergunta}</p>
         </div>
         <Opcoes />
         <div className="botoes">
           <Botao btnAmarelo>Voltar</Botao>
-          <Botao>Confirmar</Botao>
+          <Botao disabled>Confirmar</Botao>
         </div>
       </div>
     </StyledQuestionsContainer>
